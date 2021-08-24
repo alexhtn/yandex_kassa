@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:yandex_kassa/models/amount.dart';
 
 import 'json_encodable.dart';
@@ -27,7 +26,7 @@ class IosTestModeSettings implements JsonEncodable {
   ///
   /// - Returns: Instance of `IosTestModeSettings`.
   IosTestModeSettings(
-      {@required this.charge,
+      {required this.charge,
       this.cardsCount = 1,
       this.enablePaymentError = false,
       this.paymentAuthorizationPassed: true});
@@ -36,7 +35,7 @@ class IosTestModeSettings implements JsonEncodable {
   Map<String, dynamic> get json => {
         'paymentAuthorizationPassed': paymentAuthorizationPassed,
         'cardsCount': cardsCount,
-        'charge': charge?.json,
+        'charge': charge.json,
         'enablePaymentError': enablePaymentError
       }..removeWhere((key, val) => val == null);
 

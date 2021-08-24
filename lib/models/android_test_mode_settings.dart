@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 import 'json_encodable.dart';
 import 'package:yandex_kassa/models/amount.dart';
 
@@ -20,7 +18,7 @@ class AndroidTestModeSettings implements JsonEncodable {
   const AndroidTestModeSettings(
       {this.showLogs = false,
       this.googlePayTestEnvironment = false,
-      @required this.mockConfiguration});
+      required this.mockConfiguration});
 
   @override
   Map<String, dynamic> get json => {
@@ -48,14 +46,14 @@ class AndroidMockConfiguration implements JsonEncodable {
       {this.completeWithError = false,
       this.paymentAuthPassed = false,
       this.linkedCardsCount = 1,
-      @required this.serviceFee});
+      required this.serviceFee});
 
   @override
   Map<String, dynamic> get json => {
         'complete_with_error': completeWithError,
         'payment_auth_passed': paymentAuthPassed,
         'cards_count': linkedCardsCount,
-        'amount': serviceFee?.json
+        'amount': serviceFee.json
       }..removeWhere((key, val) => val == null);
 
   @override

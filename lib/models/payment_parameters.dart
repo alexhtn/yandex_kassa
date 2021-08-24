@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:yandex_kassa/models/amount.dart';
 import 'package:yandex_kassa/models/android_color_scheme.dart';
 import 'package:yandex_kassa/models/android_test_mode_settings.dart';
@@ -31,50 +30,50 @@ class PaymentParameters implements JsonEncodable {
   final List<PaymentMethod> paymentMethods;
 
   /// Gateway id for the shop from Yandex.Money
-  final String gatewayId;
+  final String? gatewayId;
 
   /// Return url of the page after 3ds secure payment. Supported only https. Should be used only for you custom Activity for 3ds url
-  final String returnUrl;
+  final String? returnUrl;
 
   /// Phone number of the user. Is used for [PaymentMethod.sberbank] payment method. Should be in "+7XXXXXXXXXX" format
-  final String userPhoneNumber;
+  final String? userPhoneNumber;
 
   /// Shows Yandex.Checkout logo. Is true by default
-  final bool showYandexCheckoutLogo;
+  final bool? showYandexCheckoutLogo;
 
 // >>>>>>>IOS SPECIFIC FIELDS<<<<<<<
   /// IOS test mode settings
-  final IosTestModeSettings iosTestModeSettings;
+  final IosTestModeSettings? iosTestModeSettings;
 
   /// ApplePay merchant id. Obligatory for [PaymentMethod.applePay]
-  final String applePayMerchantIdentifier;
+  final String? applePayMerchantIdentifier;
 
   /// Enables logging of network requests
-  final bool isLoggingEnabled;
+  final bool? isLoggingEnabled;
 
   /// Color scheme for essential elements, such as buttons, switches, etc. [IosColorScheme.blueRibbon] by default
-  final IosColorScheme iosColorScheme;
+  final IosColorScheme? iosColorScheme;
 // <<<<<<IOS SPECIFIC FIELDS>>>>>>>>
 
 // >>>>>>>ANDROID SPECIFIC FIELDS<<<<<<<
   /// Android test mode settings
-  final AndroidTestModeSettings androidTestModeSettings;
+  final AndroidTestModeSettings? androidTestModeSettings;
 
   /// Color scheme for essential elements, such as buttons, switches, etc. Should not be very light
-  final AndroidColorScheme androidColorScheme;
+  final AndroidColorScheme? androidColorScheme;
 
   /// Shop id from Yandex.Checkout
-  final String shopId;
+  final String? shopId;
 
   /// GooglePay card settings
-  final List<GooglePayCardNetwork> googlePayParameters;
+  final List<GooglePayCardNetwork>? googlePayParameters;
 // <<<<<<ANDROID SPECIFIC FIELDS>>>>>>>>
 
   PaymentParameters({
-    @required this.amount,
-    @required this.purchaseName,
-    @required this.purchaseDescription,
-    @required this.clientApplicationKey,
+    required this.amount,
+    required this.purchaseName,
+    required this.purchaseDescription,
+    required this.clientApplicationKey,
     this.savePaymentMethodMode = SavePaymentMethodMode.userSelects,
     this.paymentMethods = const [PaymentMethod.bankCard],
     this.showYandexCheckoutLogo,
@@ -90,10 +89,6 @@ class PaymentParameters implements JsonEncodable {
     this.shopId,
     this.googlePayParameters,
   }) {
-    assert(amount != null);
-    assert(purchaseName != null);
-    assert(purchaseDescription != null);
-    assert(clientApplicationKey != null);
     if (Platform.isAndroid) {
       assert(shopId != null);
       if (paymentMethods.contains(PaymentMethod.googlePay)) {
@@ -115,7 +110,7 @@ class PaymentParameters implements JsonEncodable {
         'clientApplicationKey': clientApplicationKey,
         'savePaymentMethodMode': savePaymentMethodMode.json,
         'paymentMethods':
-            paymentMethods?.map((method) => method.json)?.toList(),
+            paymentMethods.map((method) => method.json).toList(),
         'gatewayId': gatewayId,
         'returnUrl': returnUrl,
         'userPhoneNumber': userPhoneNumber,
@@ -128,7 +123,7 @@ class PaymentParameters implements JsonEncodable {
         'androidColorScheme': androidColorScheme?.json,
         'shopId': shopId,
         'googlePayParameters':
-            googlePayParameters?.map((param) => param.json)?.toList()
+            googlePayParameters?.map((param) => param.json).toList()
       }..removeWhere((key, val) => val == null);
 
   @override

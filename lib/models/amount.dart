@@ -8,7 +8,6 @@ class Amount implements JsonEncodable {
   Amount(this.value, {this.currency = Currency.rub});
 
   factory Amount.fromJson(Map json) {
-    if (json == null) return null;
     return Amount(json['value'], currency: Currency(json['currency']));
   }
 

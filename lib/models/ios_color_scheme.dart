@@ -88,7 +88,7 @@ class IosColorScheme extends AndroidColorScheme implements JsonEncodable {
   final int red;
   final int green;
   final int blue;
-  final int white;
+  final int? white;
   final int alpha;
   IosColorScheme(
       {this.red = 0,
@@ -99,7 +99,6 @@ class IosColorScheme extends AndroidColorScheme implements JsonEncodable {
       : super(red: red, green: green, blue: blue);
 
   factory IosColorScheme.fromJson(Map json) {
-    if (json == null) return null;
     return IosColorScheme(
         red: json['red'],
         green: json['green'],
@@ -109,7 +108,7 @@ class IosColorScheme extends AndroidColorScheme implements JsonEncodable {
   }
 
   @override
-  Map<String, int> get json => {
+  Map<String, int?> get json => {
         'red': red,
         'green': green,
         'blue': blue,

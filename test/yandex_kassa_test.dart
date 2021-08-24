@@ -39,6 +39,6 @@ void main() {
   test('getPlatformVersion', () async {
     final result = await YandexKassa.startCheckout(paymentParameters);
 
-    expect(result.json, tokenizationResult.json);
+    expect(result?.json, tokenizationResult.json);
   });
 }

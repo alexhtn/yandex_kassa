@@ -5,8 +5,8 @@ homepage: https://github.com/idrats/yandex_kassa
 repository: https://github.com/idrats/yandex_kassa
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.10.0"
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.2.1"
 
 dependencies:
   flutter:
