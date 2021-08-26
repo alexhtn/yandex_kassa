@@ -13,18 +13,18 @@ class AndroidTestModeSettings implements JsonEncodable {
   final bool googlePayTestEnvironment;
 
   /// Test configuration settings. If this parameter is specified, mobile SDK will work in offline mode and generate a test token, which is not applicable to real payments
-  final AndroidMockConfiguration mockConfiguration;
+  final AndroidMockConfiguration? mockConfiguration;
 
   const AndroidTestModeSettings(
       {this.showLogs = false,
       this.googlePayTestEnvironment = false,
-      required this.mockConfiguration});
+      this.mockConfiguration});
 
   @override
   Map<String, dynamic> get json => {
         'show_logs': showLogs,
         'google_pay_test': googlePayTestEnvironment,
-        'mock_config': mockConfiguration.json
+        'mock_config': mockConfiguration?.json
       }..removeWhere((key, val) => val == null);
 }
 

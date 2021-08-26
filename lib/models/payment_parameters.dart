@@ -109,8 +109,7 @@ class PaymentParameters implements JsonEncodable {
         'purchaseDescription': purchaseDescription,
         'clientApplicationKey': clientApplicationKey,
         'savePaymentMethodMode': savePaymentMethodMode.json,
-        'paymentMethods':
-            paymentMethods.map((method) => method.json).toList(),
+        'paymentMethods': paymentMethods.map((method) => method.json).toList(),
         'gatewayId': gatewayId,
         'returnUrl': returnUrl,
         'userPhoneNumber': userPhoneNumber,

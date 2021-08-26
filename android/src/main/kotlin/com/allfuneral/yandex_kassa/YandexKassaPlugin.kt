@@ -8,6 +8,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 import ru.yoomoney.sdk.kassa.payments.TokenizationResult
+import ru.yoomoney.sdk.kassa.payments.checkoutParameters.GooglePayCardNetwork
 import ru.yoomoney.sdk.kassa.payments.checkoutParameters.GooglePayParameters
 import ru.yoomoney.sdk.kassa.payments.checkoutParameters.PaymentParameters
 import ru.yoomoney.sdk.kassa.payments.checkoutParameters.SavedBankCardPaymentParameters
@@ -64,6 +65,15 @@ public class YandexKassaPlugin : FlutterPlugin, MethodCallHandler, YandexKassa()
                 val shopId = call.argument<String>("shopId")
                 val googlePayParameters = call.argument<List<String>>("googlePayParameters")
 
+                val gpayAllowed: HashSet<GooglePayCardNetwork> = HashSet()
+                gpayAllowed.add(GooglePayCardNetwork.AMEX)
+                gpayAllowed.add(GooglePayCardNetwork.DISCOVER)
+                gpayAllowed.add(GooglePayCardNetwork.JCB)
+                gpayAllowed.add(GooglePayCardNetwork.MASTERCARD)
+                gpayAllowed.add(GooglePayCardNetwork.VISA)
+                gpayAllowed.add(GooglePayCardNetwork.INTERAC)
+                gpayAllowed.add(GooglePayCardNetwork.OTHER)
+
                 if (amount == null || purchaseName == null || purchaseDescription == null || clientApplicationKey == null || shopId == null || paymentMethods == null)
                     result.success(
                             PaymentResult(success = false, error = "Android could not extract one of obligatory arguments " +
@@ -80,7 +90,8 @@ public class YandexKassaPlugin : FlutterPlugin, MethodCallHandler, YandexKassa()
                         gatewayId,
                         returnUrl,
                         userPhoneNumber,
-                        GooglePayParameters(fetchGooglePayParameters(googlePayParameters))
+                        // GooglePayParameters(fetchGooglePayParameters(googlePayParameters))
+                        GooglePayParameters(gpayAllowed)
                 )
 
                 if (call.method == "confirm3dsCheckout") {

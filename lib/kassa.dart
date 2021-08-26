@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:yandex_kassa/models/payment_parameters.dart';
 import 'package:yandex_kassa/yandex_kassa.dart';
@@ -9,9 +7,10 @@ class YandexKassa {
   static const MethodChannel _channel = const MethodChannel('yandex_kassa');
 
   static Future<TokenizationResult?> startCheckout(
-          PaymentParameters paymentParameters) async {
-    final checkoutResult = await _channel.invokeMethod('startCheckout', paymentParameters.json);
-    return TokenizationResult.fromJson(jsonDecode(checkoutResult));
+      PaymentParameters paymentParameters) async {
+    final checkoutResult =
+        await _channel.invokeMethod('startCheckout', paymentParameters.json);
+    return TokenizationResult.fromJson(checkoutResult);
   }
 
   // static Future<TokenizationResult> startCheckoutWithCvcRepeatRequest(
