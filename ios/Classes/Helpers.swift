@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import YandexCheckoutPayments
+import YooKassaPayments
 
 func fetchColor(_ color: [String: Any]?) -> UIColor? {
     if (color == nil) {
@@ -65,7 +65,7 @@ func fetchAmount(_ amountJson: [String: Any]) -> Amount{
     return Amount(value: Decimal(Double(round(100*value)/100)), currency: fetchCurrency(amountJson["currency"] as? String))
 }
 
-func fetchSavePaymentMethodMode(_ savePaymentMethodMode: String?) -> YandexCheckoutPayments.SavePaymentMethod{
+func fetchSavePaymentMethodMode(_ savePaymentMethodMode: String?) -> YooKassaPayments.SavePaymentMethod{
     switch savePaymentMethodMode {
     case "userSelects":
         return .userSelects

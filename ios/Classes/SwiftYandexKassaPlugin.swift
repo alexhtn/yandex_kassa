@@ -2,8 +2,8 @@ import Flutter
 import UIKit
 import Foundation
 import PassKit
-import YandexCheckoutPayments
-import YandexCheckoutPaymentsApi
+import YooKassaPayments
+import YooKassaPaymentsApi
 //import CardIO
 
 public class SwiftYandexKassaPlugin: NSObject, FlutterPlugin {
@@ -216,7 +216,7 @@ final class RootViewController: UIViewController {
         /// Settings to customize SDK interface.
         customizationSettings: CustomizationSettings,
         /// Setting for saving payment method.
-        savePaymentMethod: YandexCheckoutPayments.SavePaymentMethod,
+        savePaymentMethod: YooKassaPayments.SavePaymentMethod,
         completionHandler: @escaping TokenizationCompletionHandler
     ) {
         onPaymentCompletionHandler = completionHandler
@@ -275,7 +275,7 @@ final class RootViewController: UIViewController {
         /// Settings to customize SDK interface.
         customizationSettings: CustomizationSettings,
         /// Setting for saving payment method.
-        savePaymentMethod: YandexCheckoutPayments.SavePaymentMethod,
+        savePaymentMethod: YooKassaPayments.SavePaymentMethod,
         completionHandler: @escaping Confirmation3dsCompletionHandler
     ) {
         on3dsConfirmationCompletionHandler = completionHandler
@@ -330,7 +330,7 @@ extension RootViewController: TokenizationModuleOutput {
     }
     
     func didFinish(on module: TokenizationModuleInput,
-                   with error: YandexCheckoutPaymentsError?) {
+                   with error: YooKassaPaymentsError?) {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.onPaymentCompletionHandler?(Result.failure(.cancelled))
