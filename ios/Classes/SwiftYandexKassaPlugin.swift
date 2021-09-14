@@ -61,7 +61,7 @@ public class SwiftYandexKassaPlugin: NSObject, FlutterPlugin {
                         amount: fetchAmount(amountJson),
                         tokenizationSettings: fetchTokenizationSettings(
                             paymentMethodsJson: paymentMethodsJson,
-                            showYandexCheckoutLogo: myArgs["showYandexCheckoutLogo"] as? Bool ?? true
+                            showYooKassaLogo: myArgs["showYooKassaLogo"] as? Bool ?? true
                         ),
                         testModeSettings: testSettings,
                         applePayMerchantIdentifier:  myArgs["applePayMerchantIdentifier"] as? String,
@@ -90,7 +90,7 @@ public class SwiftYandexKassaPlugin: NSObject, FlutterPlugin {
                         amount: fetchAmount(amountJson),
                         tokenizationSettings: fetchTokenizationSettings(
                             paymentMethodsJson: paymentMethodsJson,
-                            showYandexCheckoutLogo: myArgs["showYandexCheckoutLogo"] as? Bool ?? true
+                            showYooKassaLogo: myArgs["showYooKassaLogo"] as? Bool ?? true
                         ),
                         testModeSettings: testSettings,
                         applePayMerchantIdentifier:  myArgs["applePayMerchantIdentifier"] as? String,

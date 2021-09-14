@@ -25,14 +25,14 @@ func fetchColor(_ color: [String: Any]?) -> UIColor? {
 }
 
 
-func fetchTokenizationSettings(paymentMethodsJson: [String]?, showYandexCheckoutLogo: Bool) -> TokenizationSettings {
+func fetchTokenizationSettings(paymentMethodsJson: [String]?, showYooKassaLogo: Bool) -> TokenizationSettings {
     
     var paymentTypes: PaymentMethodTypes = []
     if (paymentMethodsJson?.contains("bank_card") ?? false) {
         paymentTypes.insert(.bankCard)
     }
     if (paymentMethodsJson?.contains("yandex_money") ?? false) {
-        paymentTypes.insert(.yandexMoney)
+        paymentTypes.insert(.yooMoney)
     }
     if (paymentMethodsJson?.contains("apple_pay") ?? false) {
         paymentTypes.insert(.applePay)
@@ -43,7 +43,7 @@ func fetchTokenizationSettings(paymentMethodsJson: [String]?, showYandexCheckout
     
     return TokenizationSettings(
         paymentMethodTypes: paymentTypes,
-        showYandexCheckoutLogo: showYandexCheckoutLogo
+        showYooKassaLogo: showYooKassaLogo
     )
 }
 
